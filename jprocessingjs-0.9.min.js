@@ -1,5 +1,5 @@
 /*
-jQuery jProcessingJS v0.9
+jProcessingJS v0.9
 https://github.com/GildasP/jProcessingJS
 
 by Gildas P. / http://www.gildasp.fr
