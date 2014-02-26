@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>jProcessingJS > Sketch fullscreen, responsive, événements souris et tactiles en overlay, ...</title>
+
+<style type="text/css">
+body {
+	margin:30px; padding:0;
+	background-color:#E0E0E0;
+  color:#000; font-size:12px;
+  font-family: Arial, Helvetica;
+}
+h3 { font-size:12px; font-weight:normal; }
+.medium { font-size:15px; font-weight:bold; }
+.big { font-size:24px; font-weight:bold; }
+
+.rel { position: relative; }
+.overlay { position:absolute; top:20px; left:20px; width:240px; height:150px; 
+  padding:15px; background-color:#E0E0E0; opacity:0.6; 
+}
+
+canvas { margin:0; padding:0; }
+canvas.small { width:300px; height:300px; }
+canvas.wide { width:100%; height:300px; }
+
+.col { margin-bottom:50px; }
+pre { background-color:#FFF; padding:5px; display:inline-block; }
+</style>
+
+<script type="text/javascript" src="js/jprocessingjs-0.9.min.js"></script>
+<script type="text/javascript" src="js/processing-1.4.1.min.js"></script>
+<script type="text/javascript">
+
+</script>
+
+</head>
+
+<body>
+
+<h2 class="big">Quelques limitations de <a href="http://processingjs.org/" target="_blank">Processing.js</a>...</h2>
+
+<div class="col">
+  <p class="medium">Un sketch <a href="http://processingjs.org/learning/" target="_blank">ordinaire</a>, avec une canvas dimensionnée en CSS</p>
+  <p>Le format du sketch est spécifié via size() dans le setup() du sketch, mais ici la canvas a un autre format spécifié en CSS...</p>
+  <canvas id="demo2" class="wide" data-processing-sources="pde/demo1.pde"></canvas>
+  <p>Processing.js continue d'afficher le sketch a son format d'origine, mais il ne correspond plus au format de la canvas... du coup le contenu est étiré.<br />
+  Les interactions à la souris en prennent un coup aussi.<br />
+  Pas classe, pas responsive.</p>
+</div>
+
+<div class="col">
+  <p class="medium">Canvas avec un overlay HTML</p>
+  <p>Toujours le même sketch, mais cette fois-ci j'ai placé une div HTML par dessus...</p>
+  <div class="rel">
+    <canvas id="demo3" class="small" data-processing-sources="pde/demo1.pde"></canvas>
+    <div class="overlay"></div>
+  </div>
+  <p>
+    Toutes les interactions souris ont disparu lorsqu'on survole la div !<br />
+    click, press, release, coordonnées de la souris, etc, dans les choux.<br /> 
+  Pas pratique si on veut profiter d'un fond de site en Processing par exemple...<br />
+  Pas classe.</p>
+</div>
+
+
+
+
+<h2 class="big">...et une solution facile à mettre en place :<br />
+  <a href="js/jprocessingjs.js" target="_blank">jProcessingJS</a> est là pour ça !</a></h1>
+
+<div class="col">
+  <p class="medium">Installation</p>
+  <p>Il suffit de <a href="js/jprocessingjs.js" target="_blank">télécharger le plugin</a>, et de l'installer dans le header de la page.</p>
+  <p>Pour cela, placer simplement entre &lt;head&gt; et &lt;/head&gt; :
+    <pre>&lt;script type="text/javascript" src="js/jprocessingjs.js"&gt;&lt;/script&gt;</pre>
+    avant ou après l'import de <a href="http://processingjs.org/" target="_blank">Processing.js</a>.
+  </p>
+</div>
+
+<div class="col">
+  <p class="medium">Sketch fullscreen !</p>
+  <p>Une fois le plgin installé, ajouter directement <b>dans le setup() du sketch</b> :
+  <pre>jProcessingJS(this, {fullscreen:true});</pre>
+    <b>Cette ligne remplace l'instruction size(), que vous pouvez donc retirer.</b></p>
+  <h3><a href="fullscreen.html" target="_blank" title="Sketch processing.js plein écran">Pour la démo fullscreen, ça se passe ici !</a></h3>
+</div>
+
+<div class="col">
+  <p class="medium">Sketch responsive</p>
+  <p>Il suffit d'ajouter directement <b>dans le setup() du sketch</b> :
+  <pre>jProcessingJS(this, {responsive:true});</pre>
+  ou
+  <pre>jProcessingJS(this); // responsive est actif par défaut</pre>
+    <b>Cette ligne remplace l'instruction size(), que vous pouvez donc retirer.</b></p>
+  <canvas id="demo4" class="wide" data-processing-sources="pde/demo2.pde"></canvas>
+  <p>Vous avez donc toute liberté d'écrire un sketch et de changer son format d'affichage simplement en CSS (ici il est à 100%).<br />
+   <b>Le format du sketch se met à jour dès que la fenêtre est redimentionnée</b>, testez par vous même !</p>
+</div>
+
+<div class="col">
+  <p class="medium">Canvas avec un overlay HTML</p>
+  <p>Pour résoudre ce problème là, toujours une seule ligne de code <b>dans le setup() du sketch</b> :
+  <pre>jProcessingJS(this, {mouseoverlay:true});</pre></p>
+  <div class="rel">
+    <canvas id="demo5" class="small" data-processing-sources="pde/demo3.pde"></canvas>
+    <div class="overlay"></div>
+  </div>
+  <p><b>Tous les événements souris sont de retour</b>, qu'on soit au-dessus d'un overlay ou pas.</p>
+  <p>
+    Accessoirement, les <b>événements tactiles</b> sont aussi répercutés par défaut.<br />
+    Il est possible de les désactiver via :
+    <pre>jProcessingJS(this, {touchenabled:false});</pre>
+  </p>
+</div>
+
+<div class="col">
+  <p class="medium">Et on peut évidemment cumuler responsive et overlay...</p>
+  <p>Enocre et toujours une seule ligne de code <b>dans le setup() du sketch</b> :
+  <pre>jProcessingJS(this, {mouseoverlay:true, responsive:true});</pre>
+  ou
+  <pre>jProcessingJS(this, {mouseoverlay:true}); // responsive par défaut</pre>
+</p>
+  <div class="rel">
+    <canvas id="demo6" class="wide" data-processing-sources="pde/demo3.pde"></canvas>
+    <div class="overlay"></div>
+  </div>
+  <p>Toutes les interactions souris fonctionnent, et le sketch se redimentionne correctement.<br />
+    Classe.</p>
+</div>
+	
+</body>
+</html>
