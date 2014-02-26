@@ -64,8 +64,10 @@ I've spent some time playing with ProcessingJS, and found it great... and greate
 
 ### Live examples ?
 
-Coming soon on my blog : [http://playingwithpixels.gildap.fr](http://playingwithpixels.gildap.fr).  
-You may already download the examples here, in the example folder, or download the zip file.
+Of course !  
+Most of it is in French, but it talks by itself : [http://playingwithpixels.gildap.fr](http://playingwithpixels.gildasp.fr/jprocessingjs-sketch-fullscreen-et-responsive-facile/).  
+You can view the [fullscreen example here](http://playingwithpixels.gildasp.fr/exemples/jprocessingjs/), too.
+You may also download the examples here, in the example folder, or download the zip file.
 
 ### More ?
 
