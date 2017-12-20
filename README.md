@@ -3,6 +3,8 @@ jProcessingJS
 
 A lightweight easy-to-use ProcessingJS extension, for advanced sketch integration in your webdesign...
 
+### Update 2017 : It's not relevant anymore, go to [p5.js](https://p5js.org/) instead !
+
 ### Why ?
 
 Because ProcessingJS is a great tool to display a Processing sketch online, and it's a great html5 IDE too.  
